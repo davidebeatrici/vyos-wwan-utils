@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "$(date -Iseconds) $WLB_INTERFACE_NAME $WLB_INTERFACE_STATE" >> /var/log/load-balancing-status.log
+
+if [ "$WLB_INTERFACE_NAME" = "wwan0" ] && [ "$WLB_INTERFACE_STATE" = "FAILED" ]; then
+	/config/scripts/restart-wwan.bash &
+fi 
